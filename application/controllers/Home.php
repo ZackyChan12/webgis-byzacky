@@ -33,6 +33,7 @@ class Home extends CI_Controller {
 	public function info_ATM($id_atm)
 	{
 		$data['title'] = 'WEB GIS - Detail ATM';
+		$data['tampil_atm'] = $this->dt->get_atm();
 		$data['dt_gambar'] = $this->dt->get_gambar($id_atm);
 		$data['dt_id_atm'] = $this->dt->get_detail($id_atm);
 		$this->load->view('v_detil', $data);

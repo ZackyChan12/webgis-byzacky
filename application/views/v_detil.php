@@ -106,8 +106,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			iconSize: [23, 30],
 		});
 
+        <?php foreach($dt_id_atm as $data) : ?>
+            var atm_lat = <?= $data['lat_atm']; ?>;
+            var atm_long = <?= $data['long_atm']; ?>;
+        <?php endforeach; ?>
+        console.log(atm_lat, atm_long);
 
-    <?php foreach($dt_atm_id as $key => $value) { ?>
+        map.flyTo([atm_long,atm_lat], 18,{
+                animate: true,
+                duration: 2
+            })
+
+
+    <?php foreach($tampil_atm as $key => $value) { ?>
         L.marker([<?= $value->long_atm ?>, <?= $value->lat_atm ?>], {icon: icon_atm}).addTo(map)
         .bindPopup("<div style='text-align: center;'><h5><b><?= $value->nama_atm ?></h5></b></div><br>"+
         "<a href='<?= base_url('Home/info_ATM/' . $value->id_atm) ?>'><img src='<?= base_url('assets/uploads/' . $value->foto_atm) ?>' style='margin-bottom: 10px;' width=100%></a>"+
